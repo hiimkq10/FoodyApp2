@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/drawable/badge_background.xml" value="0.252" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/drawable/bottom_border.xml" value="0.252" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.3155" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.252" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/drawable/ic_baseline_remove_24.xml" value="0.2595" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.215" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.252" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/drawable/plus_button_background.xml" value="0.3155" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/drawable/search_edittext_background.xml" value="0.215" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/drawable/textview_backgroud.xml" value="0.252" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/layout/activity_cart.xml" value="0.33" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/layout/activity_food_info.xml" value="0.36666666666666664" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/layout/activity_restaurant_info.xml" value="0.33" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/layout/activity_restaurants.xml" value="0.33" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/layout/cart_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/layout/food_item.xml" value="0.33" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/layout/fragment_list_food.xml" value="0.358695652173913" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/layout/fragment_list_restaurant.xml" value="0.358695652173913" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/layout/restaurant_item.xml" value="0.33" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/LapTrinhDiDong/Foody/FoodyApp/FoodyApp/app/src/main/res/menu/cart_menu.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
