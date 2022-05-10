@@ -48,7 +48,7 @@ public class UserDao {
         Cursor cursor = db.query("User", null, "Phone = ?", new String[] { String.valueOf(phone) },null, null, null);
         if(cursor != null)
             cursor.moveToFirst();
-        User user = new User(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+        User user = new User(cursor.getInt(0) , cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
         return user;
     }
 
