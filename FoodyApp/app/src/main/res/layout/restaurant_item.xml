@@ -48,7 +48,7 @@
             android:layout_alignLeft="@+id/restaurantName"
             android:maxLines="2"
             android:text="This is a good restaurant"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
     </RelativeLayout>
 
