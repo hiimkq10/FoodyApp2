@@ -7,15 +7,25 @@
     android:orientation="vertical"
     tools:context=".FoodInfoActivity">
 
-    <ImageView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.MyApp.ActionBar"/>
+
+
+    <ImageView
+        android:id="@+id/foodImage"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/food"
         />
 
     <TextView
+        android:id="@+id/foodName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cơm Sườn Bì Chả"
@@ -25,6 +35,7 @@
         android:textStyle="bold"/>
 
     <TextView
+        android:id="@+id/foodPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Giá: 30000đ"
@@ -33,6 +44,7 @@
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"/>
 
     <TextView
+        android:id="@+id/foodDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mô tả: Cơm Ngon Lắm"
@@ -43,19 +55,21 @@
         />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">
 
-        <Button
-            android:id="@+id/remove"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+        <ImageButton
+            android:id="@+id/removeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            app:icon="@drawable/ic_baseline_remove_24" />
+            android:background="@color/colorPrimary"
+            android:padding="4dp"
+            android:src="@drawable/ic_baseline_remove_24" />
 
         <TextView
             android:id="@+id/quantity"
@@ -63,21 +77,23 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@id/remove"
+            android:layout_toRightOf="@id/removeButton"
             android:text="1"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
-        <Button
-            android:id="@+id/add"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+        <ImageButton
+            android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/quantity"
-            app:icon="@drawable/ic_baseline_add_24" />
+            android:background="@color/colorPrimary"
+            android:padding="4dp"
+            android:src="@drawable/ic_baseline_add_24" />
 
         <Button
+            android:id="@+id/addToCartButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

@@ -11,4 +11,5 @@
     <color name="golden">#F7C000</color>
     <color name="colorPrimary">#BA020F</color>
     <color name="review">#0180DF</color>
+    <color name="light_gray">#F5F5F5</color>
 </resources>

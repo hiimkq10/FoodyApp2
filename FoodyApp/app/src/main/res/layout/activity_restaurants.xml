@@ -15,11 +15,12 @@
         android:background="@color/colorPrimary">
 
         <EditText
+            android:id="@+id/searchEdt"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/search_edittext_background"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:hint="Search for name"
             android:padding="5dp"/>
 

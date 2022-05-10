@@ -1,21 +1,25 @@
 package hcmute.nhom03.foodyapp.model;
 
-public class Food {
+import java.io.Serializable;
+
+public class Food implements Serializable {
     private int id, resID;
     private String name, description;
     private int price;
     private int image;
+    private boolean delivery;
 
     public Food() {
     }
 
-    public Food(int id, int resID, String name, String description, int price, int image) {
+    public Food(int id, int resID, String name, int price, int image, String description, Boolean delivery) {
         this.id = id;
         this.resID = resID;
         this.name = name;
         this.description = description;
         this.price = price;
         this.image = image;
+        this.delivery = delivery;
     }
 
     public String getName() {
@@ -64,5 +68,13 @@ public class Food {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(boolean delivery) {
+        this.delivery = delivery;
     }
 }

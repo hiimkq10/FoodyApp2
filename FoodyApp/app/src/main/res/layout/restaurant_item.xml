@@ -2,18 +2,20 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/restaurantImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
             android:src="@drawable/restaurant"
-            android:adjustViewBounds="true"/>
+            app:shapeAppearanceOverlay="@style/almostCircle" />
 
         <TextView
             android:id="@+id/delivery"
@@ -21,11 +23,16 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/restaurantImage"
             android:layout_marginBottom="6dp"
-            android:padding="5dp"
-            android:text="Delivery"
             android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="Delivery"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:textColor="@color/white"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/restaurantName"
@@ -46,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/restaurantName"
             android:layout_alignLeft="@+id/restaurantName"
-            android:maxLines="2"
+            android:maxLines="1"
             android:text="This is a good restaurant"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 

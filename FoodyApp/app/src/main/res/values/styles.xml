@@ -4,6 +4,10 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="almostCircle">
+        <item name="cornerSize">3%</item>
+    </style>
+
     <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="iconPadding">0dp</item>
         <item name="android:insetTop">0dp</item>
@@ -12,5 +16,10 @@
         <item name="android:paddingRight">8dp</item>
         <item name="android:minWidth">30dp</item>
         <item name="android:minHeight">30dp</item>
+    </style>
+
+    <style name="ThemeOverlay.MyApp.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <!-- Parent theme sets colorControlNormal to textColorPrimary. -->
+        <item name="android:textColorPrimary">@color/white</item>
     </style>
 </resources>

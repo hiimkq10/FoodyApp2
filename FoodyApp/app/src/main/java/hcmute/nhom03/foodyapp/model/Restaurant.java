@@ -1,6 +1,8 @@
 package hcmute.nhom03.foodyapp.model;
 
-public class Restaurant {
+import java.io.Serializable;
+
+public class Restaurant implements Serializable {
     private int id;
     private String name, description;
     private Boolean delivery;
@@ -9,6 +11,15 @@ public class Restaurant {
     private String address;
 
     public Restaurant() {
+    }
+
+    public Restaurant(String name, String description, Boolean delivery, int image, String openHours, String address) {
+        this.name = name;
+        this.description = description;
+        this.delivery = delivery;
+        this.image = image;
+        this.openHours = openHours;
+        this.address = address;
     }
 
     public Restaurant(int id, String name, String description, Boolean delivery, int image, String openHours, String address) {
