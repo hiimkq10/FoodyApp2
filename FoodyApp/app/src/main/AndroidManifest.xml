@@ -22,7 +22,7 @@
             android:name=".RestaurantsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +30,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".AccountSettingActivity"/>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".InfoAccountActivity"/>
+        <activity android:name=".EditAccountActivity"/>
+        <activity android:name=".FogotPassActivity"/>
+        <activity android:name=".OrderActivity"/>
+
     </application>
 
 </manifest>
