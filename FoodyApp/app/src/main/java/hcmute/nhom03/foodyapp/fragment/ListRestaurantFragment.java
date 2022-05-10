@@ -15,7 +15,10 @@ public class ListRestaurantFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_list_restaurant, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_restaurant, container, false);
+        return view;
     }
+
+
 }
