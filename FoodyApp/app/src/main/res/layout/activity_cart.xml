@@ -7,20 +7,25 @@
     android:orientation="vertical"
     tools:context=".CartActivity">
 
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.MyApp.ActionBar"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewCart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:elevation="0dp"
+        android:layout_marginTop="5dp"
         android:layout_weight="1"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/white">
+        android:elevation="0dp">
 
         <ImageView
             android:id="@+id/cart"
@@ -30,6 +35,7 @@
             android:src="@drawable/ic_baseline_shopping_cart_24" />
 
         <TextView
+            android:id="@+id/badge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/cart"
@@ -37,11 +43,10 @@
             android:layout_marginRight="5dp"
             android:text="12"
             android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
 
         <Button
-            android:id="@+id/order"
+            android:id="@+id/orderButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -52,19 +57,18 @@
             android:text="@string/Order"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:cornerRadius="0dp"
-            />
+            app:cornerRadius="0dp" />
 
         <TextView
+            android:id="@+id/totalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="45000đ"
-            android:layout_toLeftOf="@+id/order"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimary"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            />
+            android:layout_toLeftOf="@+id/orderButton"
+            android:text="45000đ"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 

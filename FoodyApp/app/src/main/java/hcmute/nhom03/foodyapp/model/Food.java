@@ -1,17 +1,25 @@
 package hcmute.nhom03.foodyapp.model;
 
-public class Food {
-    private String name;
-    private Double price;
+import java.io.Serializable;
+
+public class Food implements Serializable {
+    private int id, resID;
+    private String name, description;
+    private int price;
     private int image;
+    private boolean delivery;
 
     public Food() {
     }
 
-    public Food(String name, Double price, int image) {
+    public Food(int id, int resID, String name, int price, int image, String description, Boolean delivery) {
+        this.id = id;
+        this.resID = resID;
         this.name = name;
+        this.description = description;
         this.price = price;
         this.image = image;
+        this.delivery = delivery;
     }
 
     public String getName() {
@@ -22,11 +30,11 @@ public class Food {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -36,5 +44,37 @@ public class Food {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getResID() {
+        return resID;
+    }
+
+    public void setResID(int resID) {
+        this.resID = resID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(boolean delivery) {
+        this.delivery = delivery;
     }
 }

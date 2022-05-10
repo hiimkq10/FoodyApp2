@@ -11,13 +11,18 @@
         android:theme="@style/Theme.FoodyApp">
         <activity
             android:name=".CartActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".FoodInfoActivity"
             android:exported="false" />
         <activity
             android:name=".RestaurantInfoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".RestaurantsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RestaurantsActivity"/>
+        </activity>
         <activity
             android:name=".RestaurantsActivity"
             android:exported="false" />

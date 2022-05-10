@@ -4,6 +4,8 @@
     android:id="@+id/recyclerviewRestaurant"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ListRestaurantFragment">
+    tools:context=".fragment.ListRestaurantFragment"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
 
 </androidx.recyclerview.widget.RecyclerView>
