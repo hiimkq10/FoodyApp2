@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="80dp"
@@ -28,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
+                android:id="@+id/edtPhoneLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -42,6 +44,7 @@
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true">
             <EditText
+                android:id="@+id/edtPassLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -51,6 +54,7 @@
                 android:drawableStart="@drawable/ic_baseline_pass" />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
+            android:id="@+id/forgetPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lấy lại mật khẩu"
@@ -60,13 +64,16 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
         android:layout_below="@id/linnearForgot"
+        android:layout_gravity="center"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/button"
-        android:layout_margin="100dp"
         android:text="Đăng nhập"
         android:textSize="25dp" />
 </RelativeLayout>

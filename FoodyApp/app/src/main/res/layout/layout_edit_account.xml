@@ -17,7 +17,7 @@
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/nabila"
-        android:text="Đăng ký"
+        android:text="Chỉnh sửa thông tin"
         android:textColor="@color/colorPrimary"
         android:textSize="40sp"
         android:textStyle="bold" />
@@ -29,7 +29,7 @@
         android:layout_marginTop="70dp">
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtName"
+            android:id="@+id/edtEditName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Họ tên"
@@ -44,41 +44,9 @@
             android:drawableLeft="@drawable/ic_create_black_24dp"
             android:drawablePadding="10dp"
             />
+
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Số điện thoại"
-            android:textColorHint="@color/colorPrimary"
-            android:textColor="@color/colorPrimary"
-            android:textSize="25sp"
-            android:inputType="phone"
-            app:met_baseColor="@color/colorPrimary"
-            app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/colorPrimary"
-            app:met_singleLineEllipsis="true"
-            android:drawableLeft="@drawable/ic_baseline_phone"
-            android:drawablePadding="10dp"
-            app:met_maxCharacters="11"
-            />
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Mật khẩu"
-            android:textColorHint="#FAF8F8"
-            android:textColor="@color/colorPrimary"
-            android:textSize="25sp"
-            android:inputType="textPassword"
-            app:met_baseColor="@color/colorPrimary"
-            app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/colorPrimary"
-            app:met_singleLineEllipsis="true"
-            android:drawableLeft="@drawable/ic_baseline_pass"
-            android:drawablePadding="10dp"
-            />
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtAddress"
+            android:id="@+id/edtEditAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Địa chỉ"
@@ -96,7 +64,6 @@
 
 
 
-
         <LinearLayout
             android:layout_marginTop="15dp"
             android:layout_gravity="center"
@@ -105,14 +72,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnReg"
+                android:id="@+id/btnUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/button"
-                android:text="Đăng ký"
+                android:text="Cập nhật"
                 android:textColor="@color/white"
                 android:textAllCaps="false"
                 android:textSize="25sp" />
