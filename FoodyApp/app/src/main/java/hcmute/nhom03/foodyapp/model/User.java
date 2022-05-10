@@ -1,16 +1,27 @@
 package hcmute.nhom03.foodyapp.model;
 
 public class User {
+    private  Integer id;
     private String name, phone, pass, address;
 
     public User() {
     }
 
-    public User(String name, String phone, String pass, String address) {
+    public User(Integer id, String name, String phone, String pass, String address) {
+
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.pass = pass;
         this.address = address;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
