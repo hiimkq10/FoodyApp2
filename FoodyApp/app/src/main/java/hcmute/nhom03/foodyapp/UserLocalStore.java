@@ -38,12 +38,11 @@ public class UserLocalStore {
         if (userLocalDatabase.getBoolean("loggedIn", false) == false) {
             return null;
         }
-
         String name = userLocalDatabase.getString("name", "");
         String phone = userLocalDatabase.getString("phone", "");
         String address = userLocalDatabase.getString("address", "");
 
-        User user = new User(name, phone,null, address );
+        User user = new User(null,name, phone,null, address );
         return user;
     }
 }
