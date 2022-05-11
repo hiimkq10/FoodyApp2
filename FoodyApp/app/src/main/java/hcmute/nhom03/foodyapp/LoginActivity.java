@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import hcmute.nhom03.foodyapp.Database.DatabaseHelper;
 import hcmute.nhom03.foodyapp.dao.UserDao;
 import hcmute.nhom03.foodyapp.model.User;
+import hcmute.nhom03.foodyapp.utils.PreferenceManager;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgetPass;
     UserDao userDao;
     UserLocalStore userLocalStore;
+    PreferenceManager preferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         userDao = new UserDao();
         userLocalStore = new UserLocalStore(getApplicationContext());
+        preferenceManager = new PreferenceManager(getApplicationContext());
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

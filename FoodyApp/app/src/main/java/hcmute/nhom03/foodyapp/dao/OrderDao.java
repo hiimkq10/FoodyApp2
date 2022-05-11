@@ -18,7 +18,7 @@ public class OrderDao {
         SQLiteDatabase db = helper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("ID", order.getId());
+        values.put("OrderID", order.getId());
         values.put("UserID", order.getUserID());
         values.put("Address", order.getAddress());
         values.put("Total", order.getTotal());
@@ -31,7 +31,7 @@ public class OrderDao {
     public List<Order> getAllUser(Context context, String userID) {
         // array of columns to fetch
         String[] columns = {
-                "ID","UserID","Address","Total"
+                "OrderID","UserID","Address","Total"
         };
 
         List<Order> orderList = new ArrayList<Order>();
