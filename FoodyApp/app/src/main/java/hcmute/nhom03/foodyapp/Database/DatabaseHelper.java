@@ -61,7 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CREATE_TABLE_CART=
             "CREATE TABLE Cart (" +
                     "ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-                    "UserID INTEGER," +
+                    "CustumerID INTEGER," +
                     "FoodID INTEGER," +
                     "Quantity INTEGER," +
                     "FOREIGN KEY(FoodID) REFERENCES Food(ID)," +
