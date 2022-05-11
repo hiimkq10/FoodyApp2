@@ -1,5 +1,6 @@
 package hcmute.nhom03.foodyapp.dao;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -106,5 +107,32 @@ public class CartDao {
         else {
             return null;
         }
+    }
+    @SuppressLint("Range")
+    public void addOrderDetail(Context context, Integer userID, String orderID) {
+
+        String[] columns = {
+                "FoodID", "Quantity"
+        };
+        DatabaseHelper helper = new DatabaseHelper(context);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        Cursor cursor = db.query("Cart", columns, "UserID = ?", new String[]{String.valueOf(userID)},       //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                null); //The sort order
+
+        if (cursor.moveToFirst()) {
+            do {
+                ContentValues values = new ContentValues();
+                values.put("OrderID", orderID);
+                values.put("FoodID", Integer.parseInt(cursor.getString(cursor.getColumnIndex("FoodID"))));
+                values.put("Quantity", Integer.parseInt(cursor.getString(cursor.getColumnIndex("Quantity"))));
+
+                db.insert("OrderDetail", null, values);
+            } while (cursor.moveToNext());
+        }
+        db.delete("Cart","UserID = ?", new String[]{String.valueOf(userID)});
     }
 }

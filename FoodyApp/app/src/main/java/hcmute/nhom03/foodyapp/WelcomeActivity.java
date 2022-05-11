@@ -8,11 +8,13 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import hcmute.nhom03.foodyapp.model.User;
+import hcmute.nhom03.foodyapp.utils.CreateData;
 
 public class WelcomeActivity extends AppCompatActivity {
 
     Button btnLogin, btnRegis;
     UserLocalStore userLocalStore;
+    CreateData createData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
