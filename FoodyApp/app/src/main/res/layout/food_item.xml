@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingStart="5dp"
+        android:layout_marginBottom="1dp">
 
         <ImageView
             android:id="@+id/foodImage"
@@ -20,24 +23,24 @@
             android:id="@+id/foodName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cơm sườn"
-            android:layout_toRightOf="@+id/foodImage"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="2dp"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+            android:layout_toRightOf="@+id/foodImage"
+            android:text="Cơm sườn"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/foodPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="30000 đ"
-            android:layout_alignLeft="@id/foodName"
             android:layout_below="@id/foodName"
+            android:layout_alignLeft="@id/foodName"
             android:layout_marginTop="3dp"
-            />
+            android:text="30000 đ" />
 
         <ImageButton
+            android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

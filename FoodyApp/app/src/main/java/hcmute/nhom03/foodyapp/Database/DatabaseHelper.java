@@ -7,8 +7,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import hcmute.nhom03.foodyapp.model.User;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Foody.db";
 
@@ -104,7 +102,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     private SQLiteDatabase db;
 
-
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATA_VERSION);
     }
@@ -171,6 +168,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = getReadableDatabase();
         return database.rawQuery(sql,null);
     }
-
 
 }
