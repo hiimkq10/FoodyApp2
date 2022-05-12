@@ -65,7 +65,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
             android:background="@drawable/plus_button_background"
-            android:src="@drawable/ic_baseline_close_24" />
+            android:src="@drawable/ic_baseline_close_24"
+            android:visibility="gone"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

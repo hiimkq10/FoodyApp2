@@ -65,21 +65,20 @@ public class FoodOrderAdapter extends RecyclerView.Adapter<FoodOrderAdapter.Food
         holder.quantity.setText(String.valueOf(mCurrent.getQuantity()));
         Glide.with(context).load(mCurrent.getFood().getImage()).into(holder.image);
 
-        holder.clearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mCurrent.getQuantity() == 1) {
-                    carts.remove(mCurrent);
-                    cartDao.deleteCart(mCurrent);
-                }
-                else {
-                    mCurrent.setQuantity(mCurrent.getQuantity() - 1);
-                    cartDao.updateCart(mCurrent);
-                }
-                notifyDataSetChanged();
-                ((CartActivity) context).UpdateCartBadge();
-            }
-        });
+//        holder.clearBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (mCurrent.getQuantity() == 1) {
+//                    carts.remove(mCurrent);
+//                    cartDao.deleteCart(mCurrent);
+//                }
+//                else {
+//                    mCurrent.setQuantity(mCurrent.getQuantity() - 1);
+//                    cartDao.updateCart(mCurrent);
+//                }
+//                notifyDataSetChanged();
+//            }
+//        });
     }
 
     @Override

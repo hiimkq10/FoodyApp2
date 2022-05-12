@@ -34,14 +34,14 @@ public class RestaurantsActivity extends AppCompatActivity {
 
         PreferenceManager preferenceManager = new PreferenceManager(this);
 //        preferenceManager.clear();
-//        preferenceManager.putString(Constants.KEY_USER_ID, "1");
+        preferenceManager.putString(Constants.KEY_USER_ID, "1");
 //        preferenceManager.putString(Constants.KEY_USER_ID, "2");
 
 //        Uncomment this to create data in database
-        RestaurantDao restaurantDao = new RestaurantDao(this);
-        FoodDao foodDao = new FoodDao(this);
-        CreateData.CreateRestaurantData(restaurantDao);
-        CreateData.CreateFoodData(restaurantDao, foodDao);
+//        RestaurantDao restaurantDao = new RestaurantDao(this);
+//        FoodDao foodDao = new FoodDao(this);
+//        CreateData.CreateRestaurantData(restaurantDao);
+//        CreateData.CreateFoodData(restaurantDao, foodDao);
 
         Handler handler = new Handler();
 

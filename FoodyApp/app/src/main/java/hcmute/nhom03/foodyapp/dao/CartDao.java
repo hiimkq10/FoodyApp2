@@ -28,7 +28,7 @@ public class CartDao {
     public void insertCart(Cart cart) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues cartValues = new ContentValues();
-        cartValues.put("CustumerID", cart.getUserID());
+        cartValues.put("UserID", cart.getUserID());
         cartValues.put("FoodID", cart.getFood().getId());
         cartValues.put("Quantity", cart.getQuantity());
         db.insert("Cart", null, cartValues);
@@ -37,7 +37,7 @@ public class CartDao {
     public void updateCart(Cart cart) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues cartValues = new ContentValues();
-        cartValues.put("CustumerID", cart.getUserID());
+        cartValues.put("UserID", cart.getUserID());
         cartValues.put("FoodID", cart.getFood().getId());
         cartValues.put("Quantity", cart.getQuantity());
         db.update("Cart", cartValues, "ID = ?", new String[] {String.valueOf(cart.getId())});
@@ -49,14 +49,17 @@ public class CartDao {
     }
 
     public LinkedList<Cart> getCarts() {
+        int restaurantID = Integer.parseInt(preferenceManager.getString(Constants.KEY_Restaurant_ID));
         LinkedList<Cart> carts = new LinkedList<>();
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         int userID = Integer.parseInt(preferenceManager.getString(Constants.KEY_USER_ID));
-        Cursor cartCursor = db.query("Cart",
-                new String[] {"ID", "CustumerID", "FoodID", "Quantity"},
-                "CustumerID = ?",
-                new String[] {String.valueOf(userID)},
-                null, null, null);
+        String query = "SELECT Cart.ID, Cart.UserID, Cart.FoodID, Cart.Quantity FROM Cart INNER JOIN Food ON Cart.FoodID = Food.ID WHERE Food.ResID = ? AND Cart.UserID = ?";
+//        Cursor cartCursor = db.query("Cart",
+//                new String[] {"ID", "UserID", "FoodID", "Quantity"},
+//                "UserID = ?",
+//                new String[] {String.valueOf(userID)},
+//                null, null, null);
+        Cursor cartCursor = db.rawQuery(query, new String[] {String.valueOf(restaurantID), String.valueOf(userID)});
         while (cartCursor.moveToNext()) {
             Cart cart = new Cart();
             cart.setId(cartCursor.getInt(0));
@@ -75,8 +78,11 @@ public class CartDao {
     public int countCartItems() {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         String userID = preferenceManager.getString(Constants.KEY_USER_ID);
-        Cursor cursor = db.query("Cart", new String[] {"SUM(Quantity) AS Count"},
-                "CustumerID = ?", new String[] {userID},"CustumerID", null, null);
+        int restaurantID = Integer.parseInt(preferenceManager.getString(Constants.KEY_Restaurant_ID));
+        String query = "SELECT Sum(Cart.Quantity) AS Count FROM Cart INNER JOIN Food ON Cart.FoodID = Food.ID WHERE Food.ResID = ? AND Cart.UserID = ? GROUP BY Cart.UserID";
+        Cursor cursor = db.rawQuery(query, new String[] {String.valueOf(restaurantID), userID});
+//        Cursor cursor = db.query("Cart", new String[] {"SUM(Quantity) AS Count"},
+//                "UserID = ?", new String[] {userID},"UserID", null, null);
         if (cursor.moveToFirst()) {
             return cursor.getInt(0);
         }
@@ -84,7 +90,6 @@ public class CartDao {
     }
 
     public int CalculateCartTotalPrice() {
-        SQLiteDatabase db = databaseHelper.getReadableDatabase();
         LinkedList<Cart> carts = getCarts();
         int totalPrice = 0;
         for (Cart c : carts) {
@@ -97,8 +102,8 @@ public class CartDao {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         String userID = preferenceManager.getString(Constants.KEY_USER_ID);
         Cursor cursor = db.query("Cart",
-                new String[] {"ID", "CustumerID", "FoodID", "Quantity"},
-                "CustumerID = ? AND FoodID = ?",
+                new String[] {"ID", "UserID", "FoodID", "Quantity"},
+                "UserID = ? AND FoodID = ?",
                 new String[] {userID, String.valueOf(food.getId())},
                 null, null, null);
         if (cursor.moveToFirst()) {
@@ -108,20 +113,28 @@ public class CartDao {
             return null;
         }
     }
+
+    public void clear(LinkedList<Cart> carts) {
+        for (Cart c : carts) {
+            deleteCart(c);
+        }
+    }
+
     @SuppressLint("Range")
     public void addOrderDetail( Integer userID, String orderID) {
-
-        String[] columns = {
-                "FoodID", "Quantity"
-        };
+        int restaurantID = Integer.parseInt(preferenceManager.getString(Constants.KEY_Restaurant_ID));
+//        String[] columns = {
+//                "FoodID", "Quantity"
+//        };
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
-        Cursor cursor = db.query("Cart", columns, "UserID = ?", new String[]{String.valueOf(userID)},       //columns for the WHERE clause
-                null,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                null); //The sort order
-
+//        Cursor cursor = db.query("Cart", columns, "UserID = ?", new String[]{String.valueOf(userID)},       //columns for the WHERE clause
+//                null,        //The values for the WHERE clause
+//                null,       //group the rows
+//                null,       //filter by row groups
+//                null); //The sort order
+        String query = "SELECT Cart.ID, Cart.UserID, Cart.FoodID, Cart.Quantity FROM Cart INNER JOIN Food ON Cart.FoodID = Food.ID WHERE Food.ResID = ? AND Cart.UserID = ?";
+        Cursor cursor = db.rawQuery(query, new String[] {String.valueOf(restaurantID), String.valueOf(userID)});
         if (cursor.moveToFirst()) {
             do {
                 ContentValues values = new ContentValues();
@@ -132,6 +145,6 @@ public class CartDao {
                 db.insert("OrderDetail", null, values);
             } while (cursor.moveToNext());
         }
-        db.delete("Cart","UserID = ?", new String[]{String.valueOf(userID)});
+//        db.delete("Cart","UserID = ?", new String[]{String.valueOf(userID)});
     }
 }

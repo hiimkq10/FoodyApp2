@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CREATE_TABLE_ORDER=
             "CREATE TABLE Orders (" +
                     "ID UUID PRIMARY KEY NOT NULL, " +
-                    "UserID INTEGER," +
+                    "CustumerID INTEGER," +
                     "Address VARCHAR(200)," +
                     "Total DOUBLE," +
                     "FOREIGN KEY(UserID) REFERENCES User(ID)" +

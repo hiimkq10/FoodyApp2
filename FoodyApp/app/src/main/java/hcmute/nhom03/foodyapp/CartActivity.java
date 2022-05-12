@@ -26,7 +26,6 @@ public class CartActivity extends AppCompatActivity {
     private CartDao cartDao;
     private CartAdapter cartAdapter;
     private LinkedList<Cart> carts;
-    private Restaurant restaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,16 +68,13 @@ public class CartActivity extends AppCompatActivity {
 
     public void SetUpToolBar() {
         Intent intent = getIntent();
-        this.restaurant = (Restaurant) intent.getSerializableExtra("Restaurant");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Cart");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(CartActivity.this, RestaurantInfoActivity.class);
-                intent1.putExtra("Restaurant", restaurant);
-                startActivity(intent1);
+                finish();
             }
         });
     }
