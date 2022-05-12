@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container);
                 switch (id) {
                     case R.id.home:
-
+                    {
+                    }
                     case R.id.account:
                     {
                         Intent account = new Intent(MainActivity.this, AccountSettingActivity.class);
