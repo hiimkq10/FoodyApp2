@@ -10,12 +10,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.LinkedList;
 import java.util.UUID;
 
+import hcmute.nhom03.foodyapp.adapter.CartAdapter;
+import hcmute.nhom03.foodyapp.adapter.FoodOrderAdapter;
+import hcmute.nhom03.foodyapp.dao.CartDao;
 import hcmute.nhom03.foodyapp.dao.OrderDao;
 import hcmute.nhom03.foodyapp.dao.UserDao;
+import hcmute.nhom03.foodyapp.model.Cart;
 import hcmute.nhom03.foodyapp.model.Order;
 import hcmute.nhom03.foodyapp.model.User;
 
@@ -28,6 +34,10 @@ public class OrderActivity extends AppCompatActivity {
     UserDao userDao;
     OrderDao orderDao;
     Order order;
+
+    CartDao cartDao;
+    FoodOrderAdapter foodOrderAdapter;
+    LinkedList<Cart> carts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +45,31 @@ public class OrderActivity extends AppCompatActivity {
 
         AnhXa();
 
+        //ds mon an trong gio
+        cartDao = new CartDao(getApplicationContext());
+        carts = new LinkedList<>();
+        foodOrderAdapter = new FoodOrderAdapter(this, carts);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(foodOrderAdapter);
+
+        //dia chi
         userLocalStore = new UserLocalStore(this);
         User user = userLocalStore.getLoggedInUser();
         edtAddress.setText(user.getAddress());
 
-        orderDao = new OrderDao();
-        userDao = new UserDao();
-        User u = userDao.getUser(getApplicationContext(), user.getPhone());
+        orderDao = new OrderDao(getApplicationContext());
+
+        int tong = cartDao.CalculateCartTotalPrice();
+        total.setText(String.valueOf(tong) + "VND");
+        ship.setText("20000 VND");
+        double total = cartDao.CalculateCartTotalPrice() + 20000;
+        lastTotal.setText(String.valueOf(total) + "VND");
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                checkOut(total);
             }
         });
     }
@@ -60,19 +83,24 @@ public class OrderActivity extends AppCompatActivity {
         btnOrder = findViewById(R.id.btnOrder);
 
     }
-    public void checkOut(Integer userId, String phone){
+    public void checkOut( Double total){
+        User user = userLocalStore.getLoggedInUser();
+        int userID = user.getId();
+        String phone = user.getPhone();
 
         if (edtAddress.getText().toString().isEmpty()) {
             edtAddress.setError("address can not be empty.");
         }
-        if(userDao.checkUserExist(getApplicationContext(), phone)){
-            String id = UUID.randomUUID().toString();
-            order.setId(id);
-            order.setUserID(userId);
-            order.setAddress(edtAddress.getText().toString().trim());
-            //order.setTotal();
+        if(userDao.checkUserExist(phone)){
 
-            orderDao.InsertOrder(getApplicationContext(),order);
+            String orderID = UUID.randomUUID().toString();
+            order.setId(orderID);
+            order.setUserID(userID);
+            order.setAddress(edtAddress.getText().toString().trim());
+            order.setTotal(total);
+
+            orderDao.InsertOrder(order);
+            cartDao.addOrderDetail(userID, orderID);
 
             // Snack Bar to show success message that record saved successfully
             Toast.makeText(getApplicationContext(),"Checkout successfully.",Toast.LENGTH_LONG).show();

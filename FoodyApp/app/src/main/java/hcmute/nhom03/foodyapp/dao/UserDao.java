@@ -6,11 +6,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import hcmute.nhom03.foodyapp.Database.DatabaseHelper;
+import hcmute.nhom03.foodyapp.UserLocalStore;
 import hcmute.nhom03.foodyapp.model.User;
 
 public class UserDao {
-    public void addUser(Context context, User user) {
-        DatabaseHelper helper = new DatabaseHelper(context);
+    DatabaseHelper helper;
+    UserLocalStore userLocalStore;
+    public UserDao(Context context) {
+        helper = new DatabaseHelper(context);
+        userLocalStore = new UserLocalStore(context);
+    }
+    public void addUser(User user) {
         SQLiteDatabase db = helper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -22,14 +28,12 @@ public class UserDao {
         db.insert("User", null, values);
         db.close();
     }
-    public boolean UpdateUserPass(Context context, String phone, String pass) {
-        DatabaseHelper helper = new DatabaseHelper(context);
+    public boolean UpdateUserPass( String phone, String pass) {
         SQLiteDatabase db = helper.getWritableDatabase();
         db.execSQL("UPDATE "+ "User" +" SET Pass = " + "'" + pass + "'" + "WHERE Phone = " + "'" + phone + "'");
         return true;
     }
-    public void updateUser(Context context, User user) {
-        DatabaseHelper helper = new DatabaseHelper(context);
+    public void updateUser( User user) {
         SQLiteDatabase db = helper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -41,8 +45,7 @@ public class UserDao {
                 new String[]{String.valueOf(user.getPhone())});
         db.close();
     }
-    public User getUser(Context context, String phone) {
-        DatabaseHelper helper = new DatabaseHelper(context);
+    public User getUser( String phone) {
         SQLiteDatabase db = helper.getWritableDatabase();
 
         Cursor cursor = db.query("User", null, "Phone = ?", new String[] { String.valueOf(phone) },null, null, null);
@@ -52,13 +55,12 @@ public class UserDao {
         return user;
     }
 
-    public boolean checkUser(Context context, String phone, String password) {
+    public boolean checkUser( String phone, String password) {
 
         // array of columns to fetch
         String[] columns = {
                 "ID"
         };
-        DatabaseHelper helper = new DatabaseHelper(context);
         SQLiteDatabase db = helper.getWritableDatabase();
         // selection criteria
         String selection = "Phone = ?" + " AND " + "Pass = ?";
@@ -79,13 +81,12 @@ public class UserDao {
 
         return false;
     }
-    public boolean checkUserExist(Context context, String phone) {
+    public boolean checkUserExist(String phone) {
 
         // array of columns to fetch
         String[] columns = {
                 "ID"
         };
-        DatabaseHelper helper = new DatabaseHelper(context);
         SQLiteDatabase db = helper.getWritableDatabase();
 
         // selection criteria

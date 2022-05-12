@@ -7,18 +7,26 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import hcmute.nhom03.foodyapp.Database.DatabaseHelper;
+import hcmute.nhom03.foodyapp.UserLocalStore;
 import hcmute.nhom03.foodyapp.model.Order;
+import hcmute.nhom03.foodyapp.model.User;
 
 public class OrderDao {
-    public void InsertOrder(Context context, Order order) {
-        DatabaseHelper helper = new DatabaseHelper(context);
+    DatabaseHelper helper;
+    UserLocalStore userLocalStore;
+    public OrderDao(Context context) {
+        helper = new DatabaseHelper(context);
+        userLocalStore = new UserLocalStore(context);
+    }
+    public void InsertOrder( Order order) {
         SQLiteDatabase db = helper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("ID", order.getId());
+        values.put("OrderID", order.getId());
         values.put("UserID", order.getUserID());
         values.put("Address", order.getAddress());
         values.put("Total", order.getTotal());
@@ -27,42 +35,26 @@ public class OrderDao {
         db.close();
     }
 
-    @SuppressLint("Range")
-    public List<Order> getAllUser(Context context, String userID) {
-        // array of columns to fetch
-        String[] columns = {
-                "ID","UserID","Address","Total"
-        };
+    public LinkedList<Order> getOrders() {
+        LinkedList<Order> orders = new LinkedList<>();
+        SQLiteDatabase db = helper.getReadableDatabase();
 
-        List<Order> orderList = new ArrayList<Order>();
+        User user = userLocalStore.getLoggedInUser();
+        int userID = Integer.parseInt(user.getId().toString());
+        Cursor Cursor = db.query("Orders",
+                new String[] {"ID", "Address", "Total"},
+                "UserID = ?",
+                new String[] {String.valueOf(userID)},
+                null, null, null);
+        while (Cursor.moveToNext()) {
+            Order order = new Order();
+            order.setId(Cursor.getString(0));
+            order.setUserID(userID);
+            order.setAddress(Cursor.getString(2));
+            order.setTotal(Cursor.getDouble(3));
 
-        DatabaseHelper helper = new DatabaseHelper(context);
-        SQLiteDatabase db = helper.getWritableDatabase();
-
-        Cursor cursor = db.query("Orders", //Table to query
-                columns,    //columns to return
-                "UserID = ?",  new String[] { String.valueOf(userID) },       //columns for the WHERE clause
-                null,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                null); //The sort order
-
-
-        // Traversing through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                Order order = new Order();
-                order.setId(cursor.getString(cursor.getColumnIndex("ID")));
-                order.setAddress(cursor.getString(cursor.getColumnIndex("Address")));
-                order.setTotal(cursor.getDouble(cursor.getColumnIndex("Total")));
-                // Adding user record to list
-                orderList.add(order);
-            } while (cursor.moveToNext());
+            orders.add(order);
         }
-        cursor.close();
-        db.close();
-
-        // return user list
-        return orderList;
+        return orders;
     }
 }

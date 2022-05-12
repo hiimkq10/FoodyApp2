@@ -1,10 +1,7 @@
 package hcmute.nhom03.foodyapp;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,9 +10,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import hcmute.nhom03.foodyapp.Database.DatabaseHelper;
 import hcmute.nhom03.foodyapp.dao.UserDao;
 import hcmute.nhom03.foodyapp.model.User;
+import hcmute.nhom03.foodyapp.utils.PreferenceManager;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgetPass;
     UserDao userDao;
     UserLocalStore userLocalStore;
+    PreferenceManager preferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +29,9 @@ public class LoginActivity extends AppCompatActivity {
 
         AnhXa();
 
-        userDao = new UserDao();
+        userDao = new UserDao(getApplicationContext());
         userLocalStore = new UserLocalStore(getApplicationContext());
+        preferenceManager = new PreferenceManager(getApplicationContext());
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, FogotPassActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ForgotPassActivity.class);
                 startActivity(intent);
             }
         });
@@ -62,11 +61,11 @@ public class LoginActivity extends AppCompatActivity {
         if (edtPass.getText().toString().isEmpty()) {
             edtPass.setError("Password field can not be empty.");
         }
-        if (userDao.checkUser(getApplicationContext(),edtPhone.getText().toString()
+        if (userDao.checkUser(edtPhone.getText().toString()
                 , edtPass.getText().toString())) {
             //Save
             User user = new User();
-            user = userDao.getUser(getApplicationContext(), edtPhone.getText().toString());
+            user = userDao.getUser(edtPhone.getText().toString());
             userLocalStore.storeUserData(user);
             userLocalStore.setUserLoggedIn(true);
 
