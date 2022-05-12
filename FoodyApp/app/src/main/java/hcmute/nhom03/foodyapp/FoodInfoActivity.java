@@ -28,7 +28,6 @@ public class FoodInfoActivity extends AppCompatActivity {
     private Button addToCartButton;
     private ImageButton addButton, removeButton;
     private Toolbar toolbar;
-    private Restaurant restaurant;
     private Food food;
     private RelativeLayout relativeLayout;
     private PreferenceManager preferenceManager;
@@ -90,7 +89,6 @@ public class FoodInfoActivity extends AppCompatActivity {
     public void LoadFoodData() {
         Intent intent = getIntent();
         this.food = (Food) intent.getSerializableExtra("Food");
-        this.restaurant = (Restaurant) intent.getSerializableExtra("Restaurant");
         Glide.with(FoodInfoActivity.this).load(food.getImage()).into(foodImage);
         foodName.setText(food.getName());
         foodPrice.setText("Giá: " + String.valueOf(food.getPrice()) + "đ");
@@ -103,9 +101,7 @@ public class FoodInfoActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FoodInfoActivity.this, RestaurantInfoActivity.class);
-                intent.putExtra("Restaurant", restaurant);
-                startActivity(intent);
+                finish();
             }
         });
     }

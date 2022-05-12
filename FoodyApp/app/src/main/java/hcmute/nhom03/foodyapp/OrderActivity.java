@@ -47,7 +47,8 @@ public class OrderActivity extends AppCompatActivity {
 
         //ds mon an trong gio
         cartDao = new CartDao(getApplicationContext());
-        carts = new LinkedList<>();
+        userDao = new UserDao(getApplicationContext());
+        carts = cartDao.getCarts();
         foodOrderAdapter = new FoodOrderAdapter(this, carts);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -61,10 +62,10 @@ public class OrderActivity extends AppCompatActivity {
         orderDao = new OrderDao(getApplicationContext());
 
         int tong = cartDao.CalculateCartTotalPrice();
-        total.setText(String.valueOf(tong) + "VND");
-        ship.setText("20000 VND");
+        total.setText("Tổng: " + String.valueOf(tong) + "VND");
+        ship.setText("Ship: 20000 VND");
         double total = cartDao.CalculateCartTotalPrice() + 20000;
-        lastTotal.setText(String.valueOf(total) + "VND");
+        lastTotal.setText("Tổng đơn hàng: " + String.valueOf(total) + "VND");
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +95,7 @@ public class OrderActivity extends AppCompatActivity {
         if(userDao.checkUserExist(phone)){
 
             String orderID = UUID.randomUUID().toString();
+            order = new Order();
             order.setId(orderID);
             order.setUserID(userID);
             order.setAddress(edtAddress.getText().toString().trim());
@@ -101,10 +103,10 @@ public class OrderActivity extends AppCompatActivity {
 
             orderDao.InsertOrder(order);
             cartDao.addOrderDetail(userID, orderID);
-
+            cartDao.clear(carts);
             // Snack Bar to show success message that record saved successfully
             Toast.makeText(getApplicationContext(),"Checkout successfully.",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(OrderActivity.this, AccountSettingActivity.class));
+            startActivity(new Intent(OrderActivity.this, MainActivity.class));
 
         } else {
             // Snack Bar to show error message that record already exists

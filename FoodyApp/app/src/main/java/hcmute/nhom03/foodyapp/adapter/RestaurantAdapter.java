@@ -63,6 +63,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             holder.delivery.setText("Review");
             holder.delivery.setBackgroundColor(context.getResources().getColor(R.color.review));
         }
+        else {
+            holder.delivery.setText("Delivery");
+            holder.delivery.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

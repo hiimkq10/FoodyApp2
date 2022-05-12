@@ -1,5 +1,6 @@
 package hcmute.nhom03.foodyapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -52,7 +53,6 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         UpdateCartBadge();
     }
 
-
     public void UpdateCartBadge() {
         if (preferenceManager.getString(Constants.KEY_USER_ID) != null) {
             int count = cartDao.countCartItems();
@@ -74,6 +74,7 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         if (!this.restaurant.getDelivery()){
             cartLayout.setVisibility(View.GONE);
         }
+        preferenceManager.putString(Constants.KEY_Restaurant_ID, String.valueOf(restaurant.getId()));
     }
 
     public void SetListeners() {
@@ -82,7 +83,6 @@ public class RestaurantInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (preferenceManager.getString(Constants.KEY_USER_ID) != null) {
                     Intent intent = new Intent(RestaurantInfoActivity.this, CartActivity.class);
-                    intent.putExtra("Restaurant", restaurant);
                     startActivity(intent);
                 }
                 else {
@@ -113,9 +113,5 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         badge = findViewById(R.id.badge);
         totalPrice = findViewById(R.id.totalPrice);
         orderButton = findViewById(R.id.order);
-    }
-
-    public Restaurant GetRestaurant() {
-        return this.restaurant;
     }
 }

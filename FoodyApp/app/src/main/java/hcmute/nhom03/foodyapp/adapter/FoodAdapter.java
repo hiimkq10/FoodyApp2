@@ -98,7 +98,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             public void onClick(View view) {
                 Intent intent = new Intent(context, FoodInfoActivity.class);
                 intent.putExtra("Food", mCurrent);
-                intent.putExtra("Restaurant", ((RestaurantInfoActivity) context).GetRestaurant());
                 context.startActivity(intent);
             }
         });
