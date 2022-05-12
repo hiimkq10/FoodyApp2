@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         AnhXa();
 
-        userDao = new UserDao();
+        userDao = new UserDao(getApplicationContext());
         user = new User();
 
         btnReg.setOnClickListener(new View.OnClickListener() {
@@ -61,14 +61,14 @@ public class RegisterActivity extends AppCompatActivity {
             edtAddress.setError("Address can not be empty.");
         }
 
-        if (!userDao.checkUserExist(getApplicationContext(),edtPhone.getText().toString().trim())) {
+        if (!userDao.checkUserExist(edtPhone.getText().toString().trim())) {
 
             user.setName(edtName.getText().toString().trim());
             user.setPhone(edtPhone.getText().toString().trim());
             user.setPass(edtPass.getText().toString().trim());
             user.setAddress(edtAddress.getText().toString().trim());
 
-            userDao.addUser(getApplicationContext(),user);
+            userDao.addUser(user);
 
             // Snack Bar to show success message that record saved successfully
             Toast.makeText(getApplicationContext(),"Registered successfully.",Toast.LENGTH_LONG).show();
