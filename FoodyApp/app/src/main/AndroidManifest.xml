@@ -13,6 +13,9 @@
             android:name=".CartActivity"
             android:exported="false"/>
         <activity
+            android:name=".OrderActivity"
+            android:exported="false"/>
+        <activity
             android:name=".FoodInfoActivity"
             android:exported="false" />
         <activity

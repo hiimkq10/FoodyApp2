@@ -27,7 +27,7 @@ public class CartDao {
     public void insertCart(Cart cart) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues cartValues = new ContentValues();
-        cartValues.put("CustumerID", cart.getUserID());
+        cartValues.put("UserID", cart.getUserID());
         cartValues.put("FoodID", cart.getFood().getId());
         cartValues.put("Quantity", cart.getQuantity());
         db.insert("Cart", null, cartValues);
@@ -36,7 +36,7 @@ public class CartDao {
     public void updateCart(Cart cart) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues cartValues = new ContentValues();
-        cartValues.put("CustumerID", cart.getUserID());
+        cartValues.put("UserID", cart.getUserID());
         cartValues.put("FoodID", cart.getFood().getId());
         cartValues.put("Quantity", cart.getQuantity());
         db.update("Cart", cartValues, "ID = ?", new String[] {String.valueOf(cart.getId())});
@@ -52,8 +52,8 @@ public class CartDao {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         int userID = Integer.parseInt(preferenceManager.getString(Constants.KEY_USER_ID));
         Cursor cartCursor = db.query("Cart",
-                new String[] {"ID", "CustumerID", "FoodID", "Quantity"},
-                "CustumerID = ?",
+                new String[] {"ID", "UserID", "FoodID", "Quantity"},
+                "UserID = ?",
                 new String[] {String.valueOf(userID)},
                 null, null, null);
         while (cartCursor.moveToNext()) {
@@ -75,7 +75,7 @@ public class CartDao {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         String userID = preferenceManager.getString(Constants.KEY_USER_ID);
         Cursor cursor = db.query("Cart", new String[] {"SUM(Quantity) AS Count"},
-                "CustumerID = ?", new String[] {userID},"CustumerID", null, null);
+                "UserID = ?", new String[] {userID},"UserID", null, null);
         if (cursor.moveToFirst()) {
             return cursor.getInt(0);
         }
@@ -96,8 +96,8 @@ public class CartDao {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         String userID = preferenceManager.getString(Constants.KEY_USER_ID);
         Cursor cursor = db.query("Cart",
-                new String[] {"ID", "CustumerID", "FoodID", "Quantity"},
-                "CustumerID = ? AND FoodID = ?",
+                new String[] {"ID", "UserID", "FoodID", "Quantity"},
+                "UserID = ? AND FoodID = ?",
                 new String[] {userID, String.valueOf(food.getId())},
                 null, null, null);
         if (cursor.moveToFirst()) {

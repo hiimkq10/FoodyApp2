@@ -18,6 +18,9 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_welcome);
 
+        Intent intent = new Intent(WelcomeActivity.this, RestaurantsActivity.class);
+        startActivity(intent);
+
         btnLogin = findViewById(R.id.btnLoginWelcome);
         btnRegis = findViewById(R.id.btnRegisterWelcome);
 
