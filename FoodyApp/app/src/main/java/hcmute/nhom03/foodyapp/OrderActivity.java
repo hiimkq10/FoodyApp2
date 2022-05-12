@@ -63,12 +63,13 @@ public class OrderActivity extends AppCompatActivity {
         int tong = cartDao.CalculateCartTotalPrice();
         total.setText(String.valueOf(tong) + "VND");
         ship.setText("20000 VND");
-        lastTotal.setText(cartDao.CalculateCartTotalPrice() + 20000 + "VND");
+        double total = cartDao.CalculateCartTotalPrice() + 20000;
+        lastTotal.setText(String.valueOf(total) + "VND");
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                checkOut(total);
             }
         });
     }
@@ -90,7 +91,7 @@ public class OrderActivity extends AppCompatActivity {
         if (edtAddress.getText().toString().isEmpty()) {
             edtAddress.setError("address can not be empty.");
         }
-        if(userDao.checkUserExist(getApplicationContext(), phone)){
+        if(userDao.checkUserExist(phone)){
 
             String orderID = UUID.randomUUID().toString();
             order.setId(orderID);
