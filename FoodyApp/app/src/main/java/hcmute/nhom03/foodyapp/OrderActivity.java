@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.UUID;
 
 import hcmute.nhom03.foodyapp.adapter.CartAdapter;
+import hcmute.nhom03.foodyapp.adapter.FoodOrderAdapter;
 import hcmute.nhom03.foodyapp.dao.CartDao;
 import hcmute.nhom03.foodyapp.dao.OrderDao;
 import hcmute.nhom03.foodyapp.dao.UserDao;
@@ -35,7 +36,7 @@ public class OrderActivity extends AppCompatActivity {
     Order order;
 
     CartDao cartDao;
-    CartAdapter cartAdapter;
+    FoodOrderAdapter foodOrderAdapter;
     LinkedList<Cart> carts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +48,17 @@ public class OrderActivity extends AppCompatActivity {
         //ds mon an trong gio
         cartDao = new CartDao(getApplicationContext());
         carts = new LinkedList<>();
-        cartAdapter = new CartAdapter(this, carts);
+        foodOrderAdapter = new FoodOrderAdapter(this, carts);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(cartAdapter);
+        recyclerView.setAdapter(foodOrderAdapter);
 
         //dia chi
         userLocalStore = new UserLocalStore(this);
         User user = userLocalStore.getLoggedInUser();
         edtAddress.setText(user.getAddress());
 
-        orderDao = new OrderDao();
-        userDao = new UserDao();
-        User u = userDao.getUser(getApplicationContext(), user.getPhone());
+        orderDao = new OrderDao(getApplicationContext());
 
         int tong = cartDao.CalculateCartTotalPrice();
         total.setText(String.valueOf(tong) + "VND");
@@ -83,7 +82,10 @@ public class OrderActivity extends AppCompatActivity {
         btnOrder = findViewById(R.id.btnOrder);
 
     }
-    public void checkOut(Integer userId, String phone, Double total){
+    public void checkOut( Double total){
+        User user = userLocalStore.getLoggedInUser();
+        int userID = user.getId();
+        String phone = user.getPhone();
 
         if (edtAddress.getText().toString().isEmpty()) {
             edtAddress.setError("address can not be empty.");
@@ -92,12 +94,12 @@ public class OrderActivity extends AppCompatActivity {
 
             String orderID = UUID.randomUUID().toString();
             order.setId(orderID);
-            order.setUserID(userId);
+            order.setUserID(userID);
             order.setAddress(edtAddress.getText().toString().trim());
             order.setTotal(total);
 
-            orderDao.InsertOrder(getApplicationContext(),order);
-            cartDao.addOrderDetail(getApplicationContext(),userId, orderID);
+            orderDao.InsertOrder(order);
+            cartDao.addOrderDetail(getApplicationContext(),userID, orderID);
 
             // Snack Bar to show success message that record saved successfully
             Toast.makeText(getApplicationContext(),"Checkout successfully.",Toast.LENGTH_LONG).show();

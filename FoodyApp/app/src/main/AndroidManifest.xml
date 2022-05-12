@@ -41,7 +41,7 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".InfoAccountActivity"/>
         <activity android:name=".EditAccountActivity"/>
-        <activity android:name=".FogotPassActivity"/>
+        <activity android:name=".ForgotPassActivity"/>
 
     </application>
 

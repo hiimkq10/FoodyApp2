@@ -26,7 +26,7 @@ public class EditAccountActivity extends AppCompatActivity {
         setContentView(R.layout.layout_edit_account);
 
         AnhXa();
-        userDao = new UserDao();
+        userDao = new UserDao(getApplicationContext());
         user = new User();
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -64,12 +64,12 @@ public class EditAccountActivity extends AppCompatActivity {
         if (edtEditAddress.getText().toString().isEmpty()) {
             edtEditAddress.setError("Address field can not be empty.");
         }
-        if (userDao.checkUserExist(getApplicationContext(),phone)) {
+        if (userDao.checkUserExist(phone)) {
 
             user.setName(edtEditName.getText().toString().trim());
             user.setAddress(edtEditAddress.getText().toString().trim());
 
-            userDao.updateUser(getApplicationContext(),user);
+            userDao.updateUser(user);
             saveUser(phone);
 
             // Snack Bar to show success message that record saved successfully
@@ -84,7 +84,7 @@ public class EditAccountActivity extends AppCompatActivity {
     }
     public void saveUser(String phone){
         User user = new User();
-        user = userDao.getUser(getApplicationContext(), phone);
+        user = userDao.getUser(phone);
         userLocalStore.storeUserData(user);
         userLocalStore.setUserLoggedIn(true);
     }
