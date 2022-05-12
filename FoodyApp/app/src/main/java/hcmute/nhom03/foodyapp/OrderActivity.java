@@ -100,7 +100,7 @@ public class OrderActivity extends AppCompatActivity {
             order.setTotal(total);
 
             orderDao.InsertOrder(order);
-            cartDao.addOrderDetail(getApplicationContext(),userID, orderID);
+            cartDao.addOrderDetail(userID, orderID);
 
             // Snack Bar to show success message that record saved successfully
             Toast.makeText(getApplicationContext(),"Checkout successfully.",Toast.LENGTH_LONG).show();

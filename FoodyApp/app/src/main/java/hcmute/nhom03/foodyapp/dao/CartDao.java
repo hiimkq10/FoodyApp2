@@ -109,13 +109,12 @@ public class CartDao {
         }
     }
     @SuppressLint("Range")
-    public void addOrderDetail(Context context, Integer userID, String orderID) {
+    public void addOrderDetail( Integer userID, String orderID) {
 
         String[] columns = {
                 "FoodID", "Quantity"
         };
-        DatabaseHelper helper = new DatabaseHelper(context);
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
         Cursor cursor = db.query("Cart", columns, "UserID = ?", new String[]{String.valueOf(userID)},       //columns for the WHERE clause
                 null,        //The values for the WHERE clause
